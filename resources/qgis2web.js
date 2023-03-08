@@ -104,8 +104,13 @@ var map = new ol.Map({
     })
 });
 
+var layerSwitcher = new ol.control.LayerSwitcher({tipLabel: "Layers"});
+map.addControl(layerSwitcher);
+layerSwitcher.hidePanel = function() {};
+layerSwitcher.showPanel();
 
-map.getView().fit([1833110.576773, 4679015.275769, 1833736.280784, 4679624.656395], map.getSize());
+
+map.getView().fit([1832120.790782, 4677963.374450, 1834913.548459, 4680284.932905], map.getSize());
 
 var NO_POPUP = 0
 var ALL_FIELDS = 1
@@ -146,7 +151,7 @@ var featureOverlay = new ol.layer.Vector({
 });
 
 var doHighlight = false;
-var doHover = true;
+var doHover = false;
 
 var highlight;
 var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -688,6 +693,3 @@ map.on("rendercomplete", function(evt) {
         attributionComplete = true;
     }
 })
-
-    var gcl = new ol.Graticule({strokeStyle: new ol.style.Stroke({color: 'rgba(35,35,35,255)', lineDash: null, lineCap: 'round', lineJoin: 'round', width: 0})});
-    gcl.setMap(map);
